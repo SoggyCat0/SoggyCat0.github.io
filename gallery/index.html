@@ -1,133 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>⚠ Under Construction ⚠</title>
-		<link rel="icon" href="icon.webp">
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	</head>
-	<body style="margin: 0px; padding: 0px;">
-		<script type="module" src="index.js"></script>
-		<script type="importmap">
-		{ import * as THREE from 'three';
-import { GLTFLoader } from 'GLTFLoader';
-import { DRACOLoader } from 'DRACOLoader';
-import { StandardControls } from 'StandardControls';
-
-let camera, scene, renderer;
-let controls;
-
-init();
-animate();
-
-function init() {
-  camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.05, 30);
-  camera.position.z = 5;
-
-  scene = new THREE.Scene();
-
-  const ambient = new THREE.HemisphereLight(0x00000, 0xb6f3b7, 0.5);
-  scene.add(ambient);
-
-  const light = new THREE.SpotLight('#dafed6', 60);
-  light.castShadow = true;
-  light.shadow.bias = -0.001;
-  light.shadow.blurSamples = 17;
-  light.shadow.radius = 7;
-  light.shadow.mapSize.width = 512;
-  light.shadow.mapSize.height = 512;
-  light.angle = Math.PI / 3.5;
-  light.penumbra = 0.75;
-  light.position.z = 3;
-  light.position.y = 4;
-  scene.add(light);
-
-  const gltfLoader = new GLTFLoader();
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderConfig({ type: 'js' });
-  dracoLoader.setDecoderPath('/gallery/threejs/draco/');
-  gltfLoader.setDRACOLoader(dracoLoader);
-
-  gltfLoader.load('assets/models/soggy.gltf', (gltf) => {
-    const root = gltf.scene;
-    scene.add(root);
-
-    const text = root.getObjectByName('Text');
-    text.castShadow = true;
-    text.receiveShadow = true;
-
-    const spot = root.getObjectByName('Spot');
-    spot.castShadow = true;
-    spot.shadow.bias = -0.001;
-    spot.shadow.blurSamples = 5;
-    spot.shadow.radius = 4;
-
-    const spot2 = root.getObjectByName('Spot001');
-    spot2.castShadow = true;
-    spot2.shadow.bias = -0.001;
-    spot2.shadow.blurSamples = 5;
-    spot2.shadow.radius = 4;
-
-    const text2 = root.getObjectByName('Text001');
-    text2.castShadow = true;
-    text2.receiveShadow = true;
-
-    const sog = root.getObjectByName('sogbgless');
-    sog.castShadow = true;
-
-    const plane = root.getObjectByName('Plane');
-    plane.receiveShadow = true;
-    plane.castShadow = true;
-
-    console.log(debug.dumpObject(root).join('\n'));
-  });
-
-  renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: false });
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.VSMShadowMap;
-  renderer.toneMapping = THREE.AgXToneMapping;
-
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  controls = new StandardControls(camera, document.body);
-
-  window.addEventListener('resize', onWindowResize);
-}
-
-function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-function animate(time) {
-  cframe += 1;
-
-  if (!last_rendered_time) last_rendered_time = time;
-  let delta = (time - last_rendered_time);
-
-  if (controls && camera) {
-    controls.updateMovement(delta || 1, 1 / (250 + 16));
-
-    if (controls.isJumping) {
-      camera.position.y += controls.velocity.y * delta;
-      controls.velocity.y -= 0.5 * delta; // gravity
-      if (controls.velocity.y <= 0) {
-        controls.isJumping = false;
-        controls.velocity.y = 0;
-        camera.position.y = Math.max(0, camera.position.y); // ensure y position is not negative
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Three.js Example</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.136.0/build/three.module.js",
+          "GLTFLoader": "https://cdn.jsdelivr.net/npm/three@0.136.0/examples/jsm/loaders/GLTFLoader.js",
+          "DRACOLoader": "https://cdn.jsdelivr.net/npm/three@0.136.0/examples/jsm/loaders/DRACOLoader.js",
+          "StandardControls": "StandardControls.js"
+        }
       }
-    }
-  }
-
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-}
-			}
-		}
-		</script> 
-		<script type="module" src="index.js"></script> 
-	</body>
+    </script>
+    <script type="module" src="index.js"></script>
+  </head>
+  <body>
+    <canvas></canvas>
+  </body>
 </html>
