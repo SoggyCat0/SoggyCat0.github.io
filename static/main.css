@@ -1,3 +1,19 @@
+#clickableImage {
+	width: 200px;
+	cursor: pointer;
+}
+
+#upgradeButton {
+	margin-top: 10px;
+}
+
+#upgrades {
+	margin-top: 20px;
+}
+
+button {
+	margin-top: 5px;
+}
 #circlebtn{
     width:60px;
     height:60px;
