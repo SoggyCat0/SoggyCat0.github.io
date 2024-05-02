@@ -83,6 +83,7 @@ body{
     height:90px;
     background-color: white;
     font-size:30px;
+    width: 200px;
     border-top-left-radius:30px;
     border-bottom-left-radius:30px;
     transition-duration: 200ms;
