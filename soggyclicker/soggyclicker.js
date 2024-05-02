@@ -5,7 +5,6 @@ let player = { score, pointsPerClick, upgrades }; // added player object
 
 const soggycat = document.getElementById('soggycat');
 const scoreElement = document.getElementById('score');
-const upgradeButton = document.getElementById('upgradeButton');
 const upgradeContainer = document.getElementById('upgrades');
 
 function save() {
@@ -31,7 +30,7 @@ function loadGame() {
   scoreElement.textContent = score;
   upgrades.forEach((upgrade, index) => {
     const upgradeElement = document.getElementById(`upgrade${index + 1}`);
-    upgradeElement.textContent = `${upgrade.name} (${upgrade.effect} points per click, $${upgrade.cost})`;
+    upgradeElement.textContent = `${upgrade.name} (${upgrade.effect} points per click, ${upgrade.cost} SogCoins)`;
     upgradeElement.disabled = upgrade.isBought;
   });
 }
@@ -43,10 +42,11 @@ scoreElement.textContent = score;
 soggycat.addEventListener('click', () => {
   score += pointsPerClick;
   scoreElement.textContent = score;
+  save(); // save game after each click
 });
 
 // Generate upgrades
-for (let i = 1; i <= 10; i++) {
+for (let i = 1; i <= 8; i++) { // changed to 8, as there are 8 upgrades in the HTML
   const upgrade = {
     name: `Upgrade ${i}`,
     cost: Math.pow(10, i),
@@ -59,8 +59,9 @@ for (let i = 1; i <= 10; i++) {
 // Display upgrades
 upgrades.forEach((upgrade, index) => {
   const upgradeElement = document.createElement('button');
+  upgradeElement.className = 'upgrade-button'; // added class name
   upgradeElement.id = `upgrade${index + 1}`;
-  upgradeElement.textContent = `${upgrade.name} (${upgrade.effect} points per click, $${upgrade.cost})`;
+  upgradeElement.textContent = `${upgrade.name} (${upgrade.effect} points per click, ${upgrade.cost} SogCoins)`;
   upgradeElement.disabled = upgrade.isBought;
   upgradeElement.addEventListener('click', () => {
     if (score >= upgrade.cost) {
@@ -68,19 +69,11 @@ upgrades.forEach((upgrade, index) => {
       scoreElement.textContent = score;
       pointsPerClick *= upgrade.effect;
       upgrade.isBought = true;
-      upgradeElement.disabled = false;
+      upgradeElement.disabled = true; // changed to true
+      save(); // save game after each upgrade purchase
     }
   });
   upgradeContainer.appendChild(upgradeElement);
 });
 
-// Upgrade button functionality
-upgradeButton.addEventListener('click', () => {
-  if (score >= 10) {
-    score -= 10;
-    scoreElement.textContent = score;
-    pointsPerClick *= 2;
-  }
-});
-
-// removed duplicate save function
+loadGame(); // load game when script is loaded
