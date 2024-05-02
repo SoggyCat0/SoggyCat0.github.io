@@ -1,7 +1,7 @@
 .upgrade-button {
-  background-color: #4CAF50; /* Green background color */
+  background-color: #FCF8F7; /* Green background color */
   border: none; /* No borders */
-  color: white; /* White text color */
+  color: #DDF9F8; /* White text color */
   padding: 15px 32px; /* Padding for better clickable area */
   text-align: center; /* Centered text */
   text-decoration: none; /* No text decoration */
@@ -13,7 +13,7 @@
 }
 
 .upgrade-button:hover {
-  background-color: #3e8e41; /* Darker green background color on hover */
+  background-color: #E7E6E5; /* Darker green background color on hover */
 }
 
 #clickableImage {
