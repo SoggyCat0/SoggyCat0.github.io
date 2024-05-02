@@ -7,6 +7,23 @@ const scoreElement = document.getElementById('score');
 const upgradeButton = document.getElementById('upgradeButton');
 const upgradeContainer = document.getElementById('upgrades');
 
+function save() {
+  try {
+    localStorage.setItem('copperSave', JSON.stringify(player));
+    console.log('Game saved successfully');
+  } catch(err) {
+    console.log('Cannot access localStorage - browser may be old or storage may be corrupt');
+  }
+}
+function loadGame() {
+  var gameLoad = JSON.parse(localStorage.getItem('copperSave'));
+  if (gameLoad) {
+    player = gameLoad;
+    console.log('Game loaded successfully');
+  } else {
+    console.log('No saved game found');
+  }
+}
 // Set initial score and points per click
 scoreElement.textContent = score;
 
@@ -44,7 +61,13 @@ upgrades.forEach((upgrade, index) => {
 	});
 	upgradeContainer.appendChild(upgradeElement);
 });
-
+function save() {
+  try {
+    localStorage.setItem('copperSave', JSON.stringify(player));
+    console.log('Game saved successfully');
+  } catch(err) {
+    console.log('Cannot access localStorage - browser may be old or storage may be corrupt');
+  }
 // Upgrade button functionality
 upgradeButton.addEventListener('click', () => {
 	if (score >= 10) {
