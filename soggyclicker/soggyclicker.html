@@ -20,5 +20,22 @@
 		<button class="upgrade-button" id="upgrade7">Fractured Sog (+64 points per click, 640000 SogCoins)</button>
 		<button class="upgrade-button" id="upgrade8">Pure Sogginess (+128 points per click, 1 Million SogCoins)</button>
 	</div>
+
+	<script>
+		let velocity = 0;
+		let spinInterval;
+
+		document.getElementById('soggycat').addEventListener('click', () => {
+			velocity += 10; // increase velocity on each click
+			spinInterval = setInterval(() => {
+				document.getElementById('soggycat').style.transform = `rotate(${velocity}deg)`;
+				velocity += 0.1; // increase velocity over time
+			}, 16); // 16ms = 60fps
+		});
+
+		document.getElementById('soggycat').addEventListener('mouseout', () => {
+			clearInterval(spinInterval); // stop spinning when mouse is out
+		});
+	</script>
 </body>
 </html>
