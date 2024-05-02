@@ -3,7 +3,7 @@ let pointsPerClick = 1;
 let upgrades = [];
 let player = { score, pointsPerClick, upgrades }; // added player object
 
-const clickableImage = document.getElementById('clickableImage');
+const clickableImage = document.getElementById('soggycat');
 const scoreElement = document.getElementById('score');
 const upgradeButton = document.getElementById('upgradeButton');
 const upgradeContainer = document.getElementById('upgrades');
