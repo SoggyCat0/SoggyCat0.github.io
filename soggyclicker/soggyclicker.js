@@ -68,7 +68,7 @@ upgrades.forEach((upgrade, index) => {
       scoreElement.textContent = score;
       pointsPerClick *= upgrade.effect;
       upgrade.isBought = true;
-      upgradeElement.disabled = true;
+      upgradeElement.disabled = false;
     }
   });
   upgradeContainer.appendChild(upgradeElement);
