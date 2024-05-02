@@ -1,3 +1,21 @@
+.upgrade-button {
+  background-color: #4CAF50; /* Green background color */
+  border: none; /* No borders */
+  color: white; /* White text color */
+  padding: 15px 32px; /* Padding for better clickable area */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* No text decoration */
+  display: inline-block; /* Inline-block display for better alignment */
+  font-size: 16px; /* Font size */
+  margin: 4px 2px; /* Margins for better spacing */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Animation for background color on hover */
+}
+
+.upgrade-button:hover {
+  background-color: #3e8e41; /* Darker green background color on hover */
+}
+
 #clickableImage {
 	width: 200px;
 	cursor: pointer;
